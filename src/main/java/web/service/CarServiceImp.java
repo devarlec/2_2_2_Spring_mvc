@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@ComponentScan("web")
 @Service
 public class CarServiceImp implements CarService {
-
 
     List<Car> cars = new ArrayList<Car>();
 
@@ -24,12 +22,16 @@ public class CarServiceImp implements CarService {
         cars.add(new Car("'WhitePerl'", "vaz-2109", "Chica"));
         cars.add(new Car("'Chaika'", "gaz-13", "Freddy"));
 
+        return getCarList(value);
 
+    }
+
+    private List<Car> getCarList(Integer value) {
+        System.out.println("Машин - " + value);
         if ((value != null) && (value < 5)) {
             return cars.stream().limit(value).collect(Collectors.toList());
         } else {
             return cars.stream().limit(5).collect(Collectors.toList());
         }
-
     }
 }

@@ -11,7 +11,6 @@ import web.service.CarService;
 import java.util.ArrayList;
 import java.util.List;
 
-@ComponentScan("web")
 @Controller
 public class CarController {
 
@@ -33,7 +32,8 @@ public class CarController {
 
 
     @GetMapping(value = "/cars")
-    public String printCars(@RequestParam(required = false) Integer count, ModelMap model) {
+    // не нужен, т.к. даже если мы не получаем его - передается null дальше? - @RequestParam(required = false)
+    public String printCars(Integer count, ModelMap model) {
 
         List<Car> allCars = carService.getCars(count);
 
